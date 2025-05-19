@@ -1,0 +1,19 @@
+# meta/main.yml
+---
+dependencies: []
+
+galaxy_info:
+  namespace: okb
+  role_name: systemd_unit
+
+  author: Fernando Aleman
+  description: Role for systemd_unit
+  license: MIT
+
+  min_ansible_version: "2.13"
+
+  platforms:
+    - name: Ubuntu
+      version:
+        - "2204"
+        - "2404"
