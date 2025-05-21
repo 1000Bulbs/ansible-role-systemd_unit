@@ -1,0 +1,11 @@
+# tasks/prerequisites.yml
+---
+- name: Ensure systemd_unit_name is set
+  when: systemd_unit_name is not defined or systemd_unit_name is none
+  ansible.builtin.fail:
+    msg: Please make sure that 'systemd_unit_name' is set
+
+- name: Ensure systemd_unit_type is supported
+  when: systemd_unit_type is not defined or systemd_unit_type not in systemd_unit_types_supported
+  ansible.builtin.fail:
+    msg: "Please make sure that systemd_unit_type is one of: {{ systemd_unit_types_supported | join(',') }}"

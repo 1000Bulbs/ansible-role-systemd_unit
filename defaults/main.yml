@@ -1,2 +1,13 @@
 # defaults/main.yml
 ---
+# Name of the systemd unit.
+systemd_unit_name: null
+
+# Type of the systemd unit.
+systemd_unit_type: null
+
+# List of supported systemd unit types
+systemd_unit_types_supported:
+  - service
+  - target
+  - timer

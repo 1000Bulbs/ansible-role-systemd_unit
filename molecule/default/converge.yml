@@ -5,3 +5,6 @@
 
   roles:
     - role: "{{ lookup('env', 'MOLECULE_PROJECT_DIRECTORY') }}"
+      vars:
+        systemd_unit_name: example
+        systemd_unit_type: service
