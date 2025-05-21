@@ -8,3 +8,18 @@
       vars:
         systemd_unit_name: example
         systemd_unit_type: service
+        systemd_unit_generic_options:
+          - Description=Example Service
+          - After=network.target
+        systemd_unit_options:
+          - ExecStart=/bin/bash -c 'while true; do echo "running"; sleep 60; done'
+          - Restart=always
+        systemd_unit_install_options:
+          - WantedBy=multi-user.target
+
+  post_tasks:
+    - name: Enable and start the example service
+      ansible.builtin.systemd:
+        name: example.service
+        enabled: true
+        state: started

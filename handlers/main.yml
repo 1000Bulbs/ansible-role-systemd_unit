@@ -1,2 +1,6 @@
 # handlers/main.yml
 ---
+- name: Ensure systemd configuration is reloaded
+  become: true
+  ansible.builtin.systemd:
+    daemon_reload: true

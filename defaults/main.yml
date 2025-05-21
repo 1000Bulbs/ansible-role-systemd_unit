@@ -11,3 +11,18 @@ systemd_unit_types_supported:
   - service
   - target
   - timer
+
+# Default directory for systemd unit files.
+systemd_unit_directory: /etc/systemd/system
+
+# Full path for the systemd unit file, constructed using the directory, unit name, and type.
+systemd_unit_file: "{{ systemd_unit_directory }}/{{ systemd_unit_name }}.{{ systemd_unit_type }}"
+
+# Generic options for systemd units, applied regardless of the unit type.
+systemd_unit_generic_options: []
+
+# Specific options for the systemd unit, dependent on the unit type and configuration.
+systemd_unit_options: []
+
+# Options related to the 'Install' section of a systemd unit file.
+systemd_unit_install_options: []
