@@ -1,0 +1,13 @@
+# tasks/systemd_unit.yml
+---
+- name: Ensure systemd unit {{ systemd_unit_name }}
+  become: true
+  when: systemd_unit_name
+  notify: Ensure systemd configuration is reloaded
+  register: systemd_unit_state
+  ansible.builtin.template:
+    src: unit.j2
+    dest: "{{ systemd_unit_file }}"
+    owner: root
+    group: root
+    mode: "0644"
