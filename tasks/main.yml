@@ -1,2 +1,4 @@
 # tasks/main.yml
 ---
+- name: Ensure systemd unit prerequisites {{ systemd_unit_name }}
+  ansible.builtin.import_tasks: prerequisites.yml
