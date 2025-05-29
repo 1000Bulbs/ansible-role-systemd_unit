@@ -2,7 +2,7 @@
 
 [![CI](https://github.com/1000Bulbs/ansible-role-systemd_unit/actions/workflows/ci.yml/badge.svg)](https://github.com/1000Bulbs/ansible-role-systemd_unit/actions/workflows/ci.yml)
 
-A brief description of the role goes here.
+This Ansible role manages the creation and lifecycle of `systemd` unit files on Linux systems. It supports defining unit files dynamically via templating, and can handle multiple unit types such as `service`, `target`, or `timer`. It ensures units are written correctly, notifies systemd to reload if changes are made, and supports integration with Molecule for testing.
 
 ---
 
@@ -20,7 +20,16 @@ These variables can be overridden in your inventory, playbooks, or `group_vars`.
 
 ### Defaults (`defaults/main.yml`)
 
-Add a list of default variables that are defined in the role's `defaults/main.yml` file.
+| Variable                       | Description                                                       | Default                                                                        |
+| ------------------------------ | ----------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| `systemd_unit_name`            | Name of the systemd unit (e.g., `nginx`)                          | `null`                                                                         |
+| `systemd_unit_type`            | Unit type (`service`, `target`, `timer`, etc.)                    | `null`                                                                         |
+| `systemd_unit_directory`       | Directory where the unit file will be placed                      | `/etc/systemd/system`                                                          |
+| `systemd_unit_file`            | Full path to the unit file                                        | `{{ systemd_unit_directory }}/{{ systemd_unit_name }}.{{ systemd_unit_type }}` |
+| `systemd_unit_generic_options` | List of directives for `[Unit]` section                           | `[]`                                                                           |
+| `systemd_unit_options`         | List of directives for the `[<Type>]` section (e.g., `[Service]`) | `[]`                                                                           |
+| `systemd_unit_install_options` | List of directives for `[Install]` section                        | `[]`                                                                           |
+| `systemd_unit_types_supported` | Valid unit types this role supports                               | `['service', 'target',   'timer']`                                             |
 
 ### Variables (`vars/main.yml`)
 
@@ -30,8 +39,7 @@ _No variables defined._
 
 ## 📦 Dependencies
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be
-set for other roles, or variables that are used from other roles.
+None.
 
 ---
 
